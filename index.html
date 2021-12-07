@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
 </head>
-<body onload="cargaSelect();">
+<body>
     <div class="card-input">
         <h1 class="card-title">Weather app</h1>
         <div class="input-and-button">
@@ -28,7 +28,7 @@
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
               </svg></button>
         </div>
-        <div class="weather">
+        <div class="weather loading">
             <h2 class="city">Weather</h2>
             <h1 class="temp">51°C</h1>
             <div class="icon-desc">
@@ -38,7 +38,6 @@
             <div class="humidity">Humidity:</div>
             <div class="separator">
             <div class="wind">Wind speed:</div>
-            <button type="button" id="back-button" onclick="goback();">BACK</button>
             </div>
         </div>
     </div>

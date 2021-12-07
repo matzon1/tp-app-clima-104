@@ -122,3 +122,19 @@ select {
   font-family: 'Open Sans', sans-serif;
   width: calc(100% - 100px);
 }
+
+.weather.loading {
+  visibility: hidden;
+  max-height: 10px;
+  position: relative;
+  padding: auto;
+
+}
+
+.weather.loading:after {
+  visibility: visible;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 20px;
+}

@@ -1,4 +1,3 @@
-
 let cityDisplay = document.querySelector(".card-container");
 let cityInputForm = document.querySelector(".card-input");
 let backButton = document.getElementById("back-button");
@@ -17,18 +16,18 @@ function displayWeather(data) {
   const { icon, description } = data.weather[0];
   const { temp, humidity } = data.main;
   const { speed } = data.wind;
-  if (select.value.toLowerCase() == name.toLowerCase()){
-  document.querySelector(".city").innerText = "Weather in " + name;
-  document.querySelector(".icon").src =
-    "https://openweathermap.org/img/wn/" + icon + ".png";
-  document.querySelector(".description").innerText = description;
-  document.querySelector(".temp").innerText = temp + "°C";
-  document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
-  document.querySelector(".wind").innerText = "Wind speed: " + speed + " km/h";
-  }
-  if (select.value.toLowerCase() != name.toLowerCase()){
-    alert("error, no es una ciudad");
-  }
+  if (select.value.toLowerCase() == name.toLowerCase()) {
+    document.querySelector(".city").innerText = "Weather in " + name;
+    document.querySelector(".icon").src =
+      "https://openweathermap.org/img/wn/" + icon + ".png";
+    document.querySelector(".description").innerText = description;
+    document.querySelector(".temp").innerText = temp + "°C";
+    document.querySelector(".humidity").innerText =
+      "Humidity: " + humidity + "%";
+    document.querySelector(".wind").innerText =
+      "Wind speed: " + speed + " km/h";
+    } 
+    document.querySelector(".weather").classList.remove("loading");
 }
 
 function searchCity() {
@@ -39,50 +38,48 @@ document.querySelector(".search button").addEventListener("click", function () {
   searchCity();
 });
 
-document.getElementById("add-city").addEventListener('keyup', function (e){
-  if(e.key == "Enter"){
+document.getElementById("add-city").addEventListener("keyup", function (e) {
+  if (e.key == "Enter") {
     addACity();
-    document.querySelector(".add-city").value = '';
+    document.querySelector(".add-city").value = "";
   }
-})
-
+});
 
 function addACity() {
+  let contador = 0;
   let city = document.querySelector(".add-city").value;
-  
-  myCityArray.push(city);
-  let el = document.createElement("option");
-  el.style.background = "#7c7c7c2b";
-  el.style.color = "white";
+
   for (i = 0; i < myCityArray.length; i++) {
-    el.text = myCityArray[i];
-    el.value = myCityArray[i];
-    select.add(el);
+    if (city != "") {
+      if (city != myCityArray[i]) {
+        contador++;
+      } 
+    }
   }
+  if (contador == myCityArray.length && city != "") {
+    myCityArray.push(city);
+  } else {
+    alert("That city is already saved!");
+  }
+
   let myCityJSON = JSON.stringify(myCityArray);
   localStorage.setItem("cityData", myCityJSON);
-  document.querySelector(".add-city").value = '';
+  document.querySelector(".add-city").value = "";
 }
 
 function showData() {
   cityInputForm.style.display = "none";
   cityDisplay.style.display = "block";
-  
+  makeLocalStorage();
 }
 
-function goback() {
-  cityInputForm.style.display = "block";
-  cityDisplay.style.display = "none";
-}
-
-function cargaSelect() {
-    for (i = 0; i < myCityArray.length; i++) {
-      let el = document.createElement("option");
-      el.style.background = "#7c7c7c2b";
-      el.style.color = "white"; 
-      el.text = myCityArray[i];
-      el.value = myCityArray[i];
-      select.add(el);
-    }
- 
+function makeLocalStorage() {
+  for (i = 0; i < myCityArray.length; i++) {
+    let el = document.createElement("option");
+    el.style.background = "#7c7c7c2b";
+    el.style.color = "white";
+    el.text = myCityArray[i];
+    el.value = myCityArray[i];
+    select.add(el);
+  }
 }
