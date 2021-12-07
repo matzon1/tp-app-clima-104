@@ -22,8 +22,28 @@ body {
   max-width: 420px;
   padding: 2em;
   margin: 1em;
+  display: none;
 }
 
+.card-input {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 420px;
+  padding: 2em;
+  margin: 1em;
+  text-align: center;
+}
+
+/* .card-title {
+  text-align: center;
+}
+
+.add-city {
+
+}
+ */
 .search {
   display: flex;
   justify-content: center;
