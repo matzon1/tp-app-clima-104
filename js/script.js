@@ -3,6 +3,7 @@ let cityDisplay = document.querySelector(".card-container");
 let cityInputForm = document.querySelector(".card-input");
 let backButton = document.getElementById("back-button");
 let select = document.getElementById("mySelect");
+let myCityArray = JSON.parse(localStorage.getItem("cityData")) || [];
 
 async function fetchWeather(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=3936d0749fdc3124c6566ed26cf11978`;
@@ -48,9 +49,8 @@ document.getElementById("add-city").addEventListener('keyup', function (e){
 
 function addACity() {
   let city = document.querySelector(".add-city").value;
-  let myCityArray = JSON.parse(localStorage.getItem("cityData")) || [];
-  myCityArray.push(city);
   
+  myCityArray.push(city);
   let el = document.createElement("option");
   el.style.background = "#7c7c7c2b";
   el.style.color = "white";
@@ -67,9 +67,22 @@ function addACity() {
 function showData() {
   cityInputForm.style.display = "none";
   cityDisplay.style.display = "block";
+  
 }
 
 function goback() {
   cityInputForm.style.display = "block";
   cityDisplay.style.display = "none";
+}
+
+function cargaSelect() {
+    for (i = 0; i < myCityArray.length; i++) {
+      let el = document.createElement("option");
+      el.style.background = "#7c7c7c2b";
+      el.style.color = "white"; 
+      el.text = myCityArray[i];
+      el.value = myCityArray[i];
+      select.add(el);
+    }
+ 
 }
