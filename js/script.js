@@ -24,7 +24,8 @@ function displayWeather(data) {
   document.querySelector(".temp").innerText = temp + "°C";
   document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
   document.querySelector(".wind").innerText = "Wind speed: " + speed + " km/h";
-  } else {
+  }
+  if (select.value.toLowerCase() != name.toLowerCase()){
     alert("error, no es una ciudad");
   }
 }
@@ -37,6 +38,12 @@ document.querySelector(".search button").addEventListener("click", function () {
   searchCity();
 });
 
+document.getElementById("add-city").addEventListener('keyup', function (e){
+  if(e.key == "Enter"){
+    addACity();
+    document.querySelector(".add-city").value = '';
+  }
+})
 
 
 function addACity() {
@@ -45,6 +52,8 @@ function addACity() {
   myCityArray.push(city);
   
   let el = document.createElement("option");
+  el.style.background = "#7c7c7c2b";
+  el.style.color = "white";
   for (i = 0; i < myCityArray.length; i++) {
     el.text = myCityArray[i];
     el.value = myCityArray[i];
@@ -52,6 +61,7 @@ function addACity() {
   }
   let myCityJSON = JSON.stringify(myCityArray);
   localStorage.setItem("cityData", myCityJSON);
+  document.querySelector(".add-city").value = '';
 }
 
 function showData() {
