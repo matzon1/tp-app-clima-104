@@ -26,8 +26,9 @@ function displayWeather(data) {
       "Humidity: " + humidity + "%";
     document.querySelector(".wind").innerText =
       "Wind speed: " + speed + " km/h";
-    } 
+    }
     document.querySelector(".weather").classList.remove("loading");
+    
 }
 
 function searchCity() {
@@ -51,7 +52,7 @@ function addACity() {
 
   for (i = 0; i < myCityArray.length; i++) {
     if (city != "") {
-      if (city != myCityArray[i]) {
+      if (city.toLowerCase() != myCityArray[i].toLowerCase()) {
         contador++;
       } 
     }
